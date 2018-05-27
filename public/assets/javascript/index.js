@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     articleContainer.empty();
     $.get("/api/headlines?saved=false")
-      .then(function (data) {
+      .then(function(data) {
         if (data && data.length) {
           renderArticles(data);
         }
@@ -34,7 +34,7 @@ $(document).ready(function () {
   function createPanel(articles) {
 
     var panel =
-      $(["<div class = 'panel panel-devault'>",
+      $(["<div class = 'panel panel-default'>",
         "<div class= 'panel-heading'>",
         "<h3>",
         article.headline,
@@ -91,7 +91,7 @@ $(document).ready(function () {
     });
   }
 
-  function handleAlertScrape(){
+  function handleArticleScrape(){
     $.get("/api/fetch")
     .then(function(data){
     initPage();

@@ -1,6 +1,6 @@
 var scrape = require("../scripts/scrape");
 
-var headlinesController = reuire("../controlles/headlines");
+var headlinesController = require("../controllers/headlines");
 var notesController = require("../controllers/notes");
 
 module.exports = function (router) {
@@ -70,7 +70,7 @@ module.exports = function (router) {
         });
     });
 
-    route.post ("/api/notes", function (req, res){
+    router.post ("/api/notes", function (req, res){
         notesController.save(req.body, function (data){
             res.json(data);
         });
