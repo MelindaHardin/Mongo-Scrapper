@@ -43,9 +43,8 @@ $(document).ready(function () {
         "</a>",
         "</h3>",
         "</div>",
-
         "<div class = 'panel-body'>",
-        (articles.summary),
+        articles.summary,
         "</div>",
         "</div>"
       ].join(""));
