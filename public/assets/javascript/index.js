@@ -21,7 +21,7 @@ $(document).ready(function () {
   }
 
 
-  function renderArticles(aricles) {
+  function renderArticles(articles) {
     var articlePanels = [];
 
     for (var i = 0; i < articles.length; i++) {
@@ -37,7 +37,7 @@ $(document).ready(function () {
       $(["<div class = 'panel panel-default'>",
         "<div class= 'panel-heading'>",
         "<h3>",
-        article.headline,
+        articles.headline,
         "<a class = 'btn btn-success save'>",
         "Save Article",
         "</a>",
@@ -45,12 +45,12 @@ $(document).ready(function () {
         "</div>",
 
         "<div class = 'panel-body'>",
-        article.summary,
+        (articles.summary),
         "</div>",
         "</div>"
       ].join(""));
 
-    panel.data("_id", article._id);
+    panel.data("_id", articles._id);
     return panel;
   }
 
@@ -95,7 +95,7 @@ $(document).ready(function () {
     $.get("/api/fetch")
     .then(function(data){
     initPage();
-    bootbox.alert("<h3 class = 'text-center mtop-80'>" + data.message + "<h3>");
+    //bootbox.alert("<h3 class = 'text-center m-top-80'>" + data.message + "<h3>");
 
     });
 

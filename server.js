@@ -17,7 +17,7 @@ var router = express.Router();
 
 require ("./config/routes")(router);
 
-app.use(express.static(_dirname + "/public"));
+app.use(express.static(__dirname + "/public"));
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
