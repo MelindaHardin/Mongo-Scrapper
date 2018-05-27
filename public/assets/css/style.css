@@ -1,3 +1,13 @@
-h1 {
-    color: blue;
+h1, .lead {
+    color: yellow;
+    text-shadow: 2px 2px black;
+    
+
+}
+
+
+.jumbotron{
+    background-image: url(../images/miami.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }

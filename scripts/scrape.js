@@ -3,32 +3,32 @@ var cheerio = require("cheerio");
 
 var scrape = function (cb) {
 
-    request("http://www.miamiherald.com/", function (err, res, body) {
+  request("http://www.miamiherald.com/", function (err, res, body) {
 
-        var $ = cheerio.load(body)
+    var $ = cheerio.load(body)
 
-        var articles = [];
+    var articles = [];
 
-        $(".teaser").each(function (i, element) {
+    $(".teaser").each(function (i, element) {
 
-            var kicker = $(this).children("p.kicker").text().trim();
-            var head = $(this).children("h4.title").text().trim();
+      var kicker = $(this).children("p.kicker").text().trim();
+      var head = $(this).children("h4.title").text().trim();
 
-            if (kicker && head){
-                var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-                var kickerNeat =kicker.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+      if (kicker && head) {
+        var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+        var kickerNeat = kicker.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
 
-                var dataToAdd = {
-                    headline: kickerNeat,
-                    summary: headNeat
-                };
-                articles.push(dataToAdd);
-            }
+        var dataToAdd = {
+          headline: kickerNeat,
+          summary: headNeat
+        };
+        articles.push(dataToAdd);
+      }
 
-        });
-        cb(articles);
     });
+    cb(articles);
+  });
 
 }
 
-module.exports=scrape;
+module.exports = scrape;

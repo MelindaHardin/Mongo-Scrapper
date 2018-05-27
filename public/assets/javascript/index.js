@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     articleContainer.empty();
     $.get("/api/headlines?saved=false")
-      .then(function(data) {
+      .then(function (data) {
         if (data && data.length) {
           renderArticles(data);
         }
@@ -34,17 +34,18 @@ $(document).ready(function () {
   function createPanel(articles) {
 
     var panel =
-      $(["<div class = 'panel panel-default'>",
+      $(["<div class='card'>",
         "<div class= 'panel-heading'>",
         "<h3>",
+        "<h5 class='card-header'>",
         articles.headline,
-        "<a class = 'btn btn-success save'>",
+        "</h5>",
+        "<p class='card-text'>",
+        articles.summary,
+        "</p>",
+        "<a class='btn btn-warning save'>",
         "Save Article",
         "</a>",
-        "</h3>",
-        "</div>",
-        "<div class = 'panel-body'>",
-        articles.summary,
         "</div>",
         "</div>"
       ].join(""));
@@ -70,33 +71,33 @@ $(document).ready(function () {
         "</div>",
         "</div>"
       ].join(""));
-      articleContainer.append(emptyAlert);
-  
+    articleContainer.append(emptyAlert);
+
   }
 
-  function handleArticleSave(){
+  function handleArticleSave() {
 
-    var articleToSave = $(this).parents (".panel").data();
-    articleToSave.saved=true;
+    var articleToSave = $(this).parents(".card").data();
+    articleToSave.saved = true;
     $.ajax({
-      method: "PATCH",
-      url: "/ai/headlines",
+      method: "POST",
+      url: "/api/headlines",
       data: articleToSave
     })
-    .then(function(data){
-      if (data.ok){
-        initPage();
-      }
-    });
+      .then(function (data) {
+        if (data.ok) {
+          initPage();
+        }
+      });
   }
 
-  function handleArticleScrape(){
+  function handleArticleScrape() {
     $.get("/api/fetch")
-    .then(function(data){
-    initPage();
-    //bootbox.alert("<h3 class = 'text-center m-top-80'>" + data.message + "<h3>");
+      .then(function (data) {
+        initPage();
+        //bootbox.alert("<h3 class = 'text-center m-top-80'>" + data.message + "<h3>");
 
-    });
+      });
 
 
   }

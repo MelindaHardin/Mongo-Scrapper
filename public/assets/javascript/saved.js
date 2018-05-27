@@ -55,6 +55,32 @@ $(document).ready(function () {
 
   }
 
+
+  function createPanel(articles) {
+
+    var panel =
+      $(["<div class='card'>",
+        "<div class= 'panel-heading'>",
+        "<h3>",
+        "<h5 class='card-header'>",
+        articles.headline,
+        "</h5>",
+        "<p class='card-text'>",
+        articles.summary,
+        "</p>",
+        "<a class='btn btn-warning save'>",
+        "Save Article",
+        "</a>",
+        "</div>",
+        "</div>"
+      ].join(""));
+
+    panel.data("_id", articles._id);
+    return panel;
+  }
+
+
+
   function renderEmpty() {
     var emptyAlert =
       $(["<div class= 'alert alert-warning text-center'>",
@@ -75,6 +101,8 @@ $(document).ready(function () {
     articleContainer.append(emptyAlert);
 
   }
+
+
   function renderNotesList(data) {
     var notesToRender = [];
     var currentNote;
