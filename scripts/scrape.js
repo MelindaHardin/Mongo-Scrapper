@@ -3,24 +3,24 @@ var cheerio = require("cheerio");
 
 var scrape = function (cb) {
 
-  request("http://www.miamiherald.com/", function (err, res, body) {
+  request("http://www.nytimes.com/", function (err, res, body) {
 
     var $ = cheerio.load(body)
 
     var articles = [];
 
-    $(".teaser").each(function (i, element) {
+    $(".theme-summary").each(function (i, element) {
 
-      var kicker = $(this).children("p.kicker").text().trim();
-      var head = $(this).children("h4.title").text().trim();
+      var head = $(this).children(".story-heading").text().trim();
+      var sum = $(this).children(".summary").text().trim();
 
-      if (kicker && head) {
+      if (head && sum) {
         var headNeat = head.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-        var kickerNeat = kicker.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+        var sumNeat = sum.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
 
         var dataToAdd = {
-          headline: kickerNeat,
-          summary: headNeat
+          headline: headNeat,
+          summary: sumNeat
         };
         articles.push(dataToAdd);
       }
