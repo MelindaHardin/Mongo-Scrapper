@@ -31,17 +31,16 @@ $(document).ready(function () {
   }
 
 
-  function createPanel(articles) {
+  function createPanel(article) {
 
     var panel =
       $(["<div class='card'>",
         "<div class= 'panel-heading'>",
-        "<h3>",
         "<h5 class='card-header'>",
-        articles.headline,
+        article.headline,
         "</h5>",
         "<p class='card-text'>",
-        articles.summary,
+        article.summary,
         "</p>",
         "<a class='btn btn-warning save'>",
         "Save Article",
@@ -50,7 +49,7 @@ $(document).ready(function () {
         "</div>"
       ].join(""));
 
-    panel.data("_id", articles._id);
+    panel.data("_id", article._id);
     return panel;
   }
 
@@ -77,10 +76,10 @@ $(document).ready(function () {
 
   function handleArticleSave() {
 
-    var articleToSave = $(this).parents(".card").data();
+    var articleToSave = $(this).parents(".panel-heading").data();
     articleToSave.saved = true;
     $.ajax({
-      method: "POST",
+      method: "UPDATE",
       url: "/api/headlines",
       data: articleToSave
     })
@@ -89,6 +88,8 @@ $(document).ready(function () {
           initPage();
         }
       });
+     
+      
   }
 
   function handleArticleScrape() {

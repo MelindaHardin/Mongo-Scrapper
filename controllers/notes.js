@@ -25,11 +25,13 @@ module.exports = {
                 console.log(doc);
                 cb(doc);
             }
-        })
+        });
     },
+
+
     delete: function (data, cb){
         Note.remove({
             _id: data._id
         }, cb);
     }
-}
+};

@@ -12,6 +12,7 @@ module.exports = function (router) {
         res.render("saved");
     });
 
+
     router.get("/api/fetch", function (req, res) {
         headlinesController.fetch(function (err, docs) {
             if (!docs || docs.insertedCount === 0) {
@@ -71,7 +72,7 @@ module.exports = function (router) {
     });
 
     router.post ("/api/notes", function (req, res){
-        notesController.saved(req.body, function (data){
+        notesController.save(req.body, function (data){
             res.json(data);
         });
     });

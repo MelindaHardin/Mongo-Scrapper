@@ -11,12 +11,13 @@ module.exports = {
                 articles[i].date = makeDate();
                 articles[i].saved = false;
             }
-
+            //mongo function
             Headline.collection.insertMany(articles, { ordered: false }, function (err, docs) {
                 cb(err, docs);
             });
         });
     },
+
     delete: function (query, cb) {
         Headline.remove(query, cb);
     },
@@ -28,8 +29,9 @@ module.exports = {
             })
             .exec(function (err, doc) {
                 cb(doc);
-            })
+            });
     }, 
+    
     update: function (query, cb) {
         Headline.update ({_id: query._id}, {
             $set: query
